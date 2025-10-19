@@ -11,9 +11,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Header />
 
       <main>
-        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
-          {children}
-        </div>
+        <div className="flex flex-col min-h-[calc(100vh-80px)]">{children}</div>
       </main>
     </div>
   );

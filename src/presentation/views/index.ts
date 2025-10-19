@@ -1,1 +1,2 @@
-export { Home } from "./Home/Home";
+export { HomePage } from "./Home/Home";
+export { SearchPage } from "./Search/Search";

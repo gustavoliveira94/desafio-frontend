@@ -2,14 +2,24 @@ import React from "react";
 
 import type { YouTubeVideo } from "@/core/interfaces/video";
 
-export const Video: React.FC<YouTubeVideo> = ({
+interface VideoProps
+  extends Pick<YouTubeVideo, "snippet" | "contentDetails" | "statistics"> {
+  type?: "featured" | "search";
+}
+
+export const Video: React.FC<VideoProps> = ({
   snippet,
   contentDetails,
   statistics,
+  type = "featured",
 }) => {
   return (
-    <div className="video-card bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer">
-      <div className="relative">
+    <div
+      className={`${type === "search" ? "flex flex-col sm:flex-row" : ""} bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer w-full`}
+    >
+      <div
+        className={`relative ${type === "search" ? "w-full md:w-[250px] sm:min-w-[250px]" : "w-full"}`}
+      >
         <img
           src={snippet?.thumbnails.default?.url}
           alt={snippet?.title}

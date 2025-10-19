@@ -1,4 +1,6 @@
-export const Home: React.FC = () => {
+import { VideosList, Video } from "@/presentation/components";
+
+export const HomePage: React.FC = () => {
   return (
     <div className="container px-4 py-8">
       <div className="mb-8">
@@ -9,6 +11,20 @@ export const Home: React.FC = () => {
           Discover the latest and most popular videos
         </p>
       </div>
+      <VideosList
+        render={(videos) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {videos.map((video) => (
+              <Video
+                key={video.id}
+                snippet={video.snippet}
+                contentDetails={video.contentDetails}
+                statistics={video.statistics}
+              />
+            ))}
+          </div>
+        )}
+      />
     </div>
   );
 };

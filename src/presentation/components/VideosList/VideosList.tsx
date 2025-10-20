@@ -1,13 +1,22 @@
-import type { YouTubeVideo } from "@/core/interfaces/video";
-
-import { useGetVideos } from "@/core/hooks/useGetVideos";
-
-interface VideosListProps {
-  render: (videos: YouTubeVideo[]) => React.ReactElement;
+interface VideosListProps<T> {
+  render: (videos: T) => React.ReactElement;
+  customHook: () => {
+    videos: T;
+    loading: boolean;
+    thereAreNoVideos: boolean;
+  };
 }
 
-export const VideosList: React.FC<VideosListProps> = ({ render }) => {
-  const { videos } = useGetVideos();
+export const VideosList = <T,>({ render, customHook }: VideosListProps<T>) => {
+  const { videos, loading, thereAreNoVideos } = customHook();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (thereAreNoVideos) {
+    return <p>No videos found.</p>;
+  }
 
   return render(videos);
 };

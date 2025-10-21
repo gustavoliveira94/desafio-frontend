@@ -1,3 +1,4 @@
+import { useVideoList } from "@/core/hooks";
 import { VideosList, Video } from "@/presentation/components";
 
 export const HomePage: React.FC = () => {
@@ -12,14 +13,22 @@ export const HomePage: React.FC = () => {
         </p>
       </div>
       <VideosList
+        customHook={useVideoList}
         render={(videos) => (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {videos.map((video) => (
+            {videos?.items?.map((video) => (
               <Video
                 key={video.id}
-                snippet={video.snippet}
-                contentDetails={video.contentDetails}
-                statistics={video.statistics}
+                title={video.snippet?.title}
+                channelTitle={video.snippet?.channelTitle}
+                publishedAt={video.snippet?.publishedAt}
+                description={video.snippet?.description}
+                duration={video.contentDetails?.duration}
+                viewCount={video.statistics?.viewCount}
+                thumbnailUrl={
+                  video.snippet?.thumbnails?.maxres?.url ||
+                  video.snippet?.thumbnails?.high?.url
+                }
               />
             ))}
           </div>

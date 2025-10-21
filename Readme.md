@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+# Frontend Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The goal is to create an application using React, TypeScript, and Vite, focusing on best development practices and testing.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: JavaScript library for building user interfaces.
+- **TypeScript**: Superset of JavaScript that adds static typing.
+- **Vite**: Fast and modern build tool for frontend projects.
+- **Vitest**: Fast and lightweight testing framework for Vite projects.
+- **React Testing Library**: Library for testing React components.
 
-## React Compiler
+## Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The project structure follows the recommended pattern for React applications with TypeScript:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+├── public/                  # Public static files
+├── src/                     # Application source code
+│   ├── configs/             # Configurations
+│   ├── core/                # Logics
+│   ├── presentation/        # UI presentation
+│   ├── router/              # Routes
+│   ├── index.css            # Css global
+│   └── main.tsx             # Application entry point
+├── .gitignore               # Files to be ignored by Git
+├── eslint.config.js         # ESLint configuration
+├── index.html               # Main HTML file
+├── package.json             # Project dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+├── vite.config.ts           # Vite configuration
+└── vitest.config.ts         # Vitest configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Available Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `dev`: Starts the development server with hot module replacement (HMR).
+- `build`: Creates an optimized production build.
+- `preview`: Preview the production build locally.
+- `lint`: Runs ESLint to check code style and quality issues.
+- `test`: Runs tests using Vitest.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Environment Variables
+
+Create a `.env` file in the project root and add the following variables:
+
+```env
+VITE_API_URL=https://www.googleapis.com/youtube/v3
+VITE_YOUTUBE_API_KEY=YOUR_API_KEY
+```
+
+## How to Run the Project
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/gustavoliveira94/desafio-frontend.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd desafio-frontend
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   yarn install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   yarn dev
+   ```
+
+   The application will be available at [http://localhost:3000](http://localhost:3000).
+
+## Tests
+
+Tests are located in the `src/__tests__` folder. To run them, use the following command:
+
+```bash
+yarn test
+```
+
+To run tests in interactive mode:
+
+```bash
+yarn test --watch
 ```

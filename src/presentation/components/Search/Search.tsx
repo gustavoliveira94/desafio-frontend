@@ -34,6 +34,7 @@ export const Search: React.FC = () => {
                 onMouseDown={() =>
                   navigate(`/search/${encodeURIComponent(item)}`)
                 }
+                data-testid="history-item"
               >
                 <p className="flex items-center gap-2">
                   <HistoryIcon /> {item}

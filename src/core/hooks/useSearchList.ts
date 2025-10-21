@@ -15,6 +15,7 @@ export const useSearchList = () => {
   const getSearchVideos = useCallback(async () => {
     try {
       const response = await searchVideos(query as string);
+
       setVideos(response);
     } catch {
       setVideos({} as YouTubeSearchListResponse);

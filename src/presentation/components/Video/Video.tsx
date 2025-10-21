@@ -25,6 +25,7 @@ export const Video: React.FC<VideoProps> = ({
 }) => {
   return (
     <div
+      data-testid="video"
       className={`${type === "search" ? "flex flex-col sm:flex-row" : ""} bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer w-full`}
     >
       <div
